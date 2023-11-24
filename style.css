@@ -14,6 +14,7 @@
     color: #3b5bdb;
     margin: 10px;
     font-weight: 600;
+    cursor: pointer;
   }
   
   .header__container {
@@ -82,6 +83,7 @@
     border: none;
     background-color: #3b5bdb;
     color: #fff;
+    cursor: pointer;
   }
   
   .form__input--priority {
@@ -124,6 +126,7 @@
   .task__button--remove-task {
     height: 20px;
     border: none;
+    cursor: pointer;
   }
   .task__button--remove-task img {
     width: 25px;
