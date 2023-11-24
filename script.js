@@ -1,17 +1,17 @@
 const tasks = [
-  {title: "Comprar comida para o gato", type: "Urgente"},
-  {title: "Consertar Computador", type: "Importante"},
-  {title: "Beber água", type: "Normal"},
-  {title: "Enviar relatório trimestral", type: "Importante"},
-  {title: "Fazer exercícios físicos", type: "Normal"},
-  {title: "Agendar consulta médica", type: "Urgente"},
-  {title: "Ler pelo menos um capítulo de um livro", type: "Normal"},
-  {title: "Limpar a despensa", type: "Importante"},
-  {title: "Pagar a conta de energia", type: "Urgente"},
-  {title: "Assistir a um documentário interessante", type: "Normal"},
+  { title: "Comprar comida para o gato", type: "Urgente" },
+  { title: "Consertar Computador", type: "Importante" },
+  { title: "Beber água", type: "Normal" },
+  { title: "Enviar relatório trimestral", type: "Importante" },
+  { title: "Fazer exercícios físicos", type: "Normal" },
+  { title: "Agendar consulta médica", type: "Urgente" },
+  { title: "Ler pelo menos um capítulo de um livro", type: "Normal" },
+  { title: "Limpar a despensa", type: "Importante" },
+  { title: "Pagar a conta de energia", type: "Urgente" },
+  { title: "Assistir a um documentário interessante", type: "Normal" },
 ];
 
-function createTaskItem(task) {
+function createTaskItem(task, index) {
   const list = document.createElement("li");
   const div = document.createElement("div");
   const urgencyLevel = document.createElement("span");
@@ -37,11 +37,14 @@ function createTaskItem(task) {
 
   img.src = "./assets/trash-icon.svg";
   img.alt = "Lixeira";
-  
+
   list.append(div, button);
   div.append(urgencyLevel, taskTitle);
   button.appendChild(img);
-
+  button.addEventListener('click', function () {
+    tasks.splice(index, 1)
+    renderElements(tasks)
+  })
   return list;
 }
 
@@ -49,15 +52,15 @@ function renderElements(array) {
   const taskUl = document.querySelector('.tasks__list');
   taskUl.innerHTML = '';
   for (let i = 0; i < array.length; i++) {
-    const allTasks = array[i];
-    const tasksItem = createTaskItem(allTasks);
+    const tasks = array[i];
+    const tasksItem = createTaskItem(tasks, i);
     taskUl.appendChild(tasksItem);
   }
 }
+
 renderElements(tasks)
 
-
-document.addEventListener('DOMContentLoaded', function () {
+function addNewTask() {
   const buttonAddTask = document.querySelector('.form__button--add-task');
 
   buttonAddTask.addEventListener('click', function (event) {
@@ -77,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
       tasks.push(newTask);
       renderElements(tasks)
     };
-
   });
-});
+};
+
+addNewTask()
